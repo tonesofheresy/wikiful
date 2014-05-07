@@ -1,0 +1,6 @@
+<h1>This is the index view for Categories</h1>
+<% @categories.each do |cat| %>
+<div>
+  <h3><%= link_to cat.name, cat %></h3>
+</div>
+<% end %>
