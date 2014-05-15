@@ -3,7 +3,7 @@
 <h1>This is the index view for Articles</h1>
 <% @articles.each do |article| %>
 <div>
-  <h3><%= link_to article.title, article %></h3>
+  <h3 class="index-article-title"><%= link_to article.title, article %></h3>
   <p>Published on <%= article.created_at.strftime("%b %d, %Y") %></p>
   <p>Filed under: <% article.categories.each do |cat| %>
     <%= cat.name %>&nbsp;<% end %>
