@@ -8,16 +8,33 @@
   </head>
   <body>
     
-    <div class="navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <%= link_to("Wikiful", root_path, class: "brand") %>
-          <div style="float: right;">Eventually log in/out and sign up links will go here</div>
+          <div class="session-controls">
+            <% if current_user %>
+              <%= link_to("Log Out", logout_path, method: 'delete', class: 'btn btn-primary btn-mini') %>
+              <%= "Logged in as #{current_user.email}" %>
+            <% else %>
+            <div class="btn-group">
+              <%= link_to("Sign Up", signup_path, class: "btn btn-mini") %>
+              <%= link_to("Log In", login_path, class: "btn btn-mini") %>
+            </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
     
     <div class="container">
+      <div class="row">
+        <div class="span4">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, id: "flash#{name}" %>
+        <% end %>
+        </div>
+      </div>
       <div class="row">
         <div class="span9"><%= yield %></div>
         <div class="span3 sidebar">
